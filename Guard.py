@@ -1,5 +1,4 @@
-import Piece
-
+from Piece import Piece
 
 class Guard(Piece):
     """Creates General game piece"""

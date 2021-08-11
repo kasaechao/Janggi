@@ -1,4 +1,4 @@
-import Piece
+from Piece import Piece
 
 class Elephant(Piece):
     """Creates General game piece"""
@@ -19,4 +19,3 @@ class Elephant(Piece):
     def is_valid_move(self, board, curr, dest):
         """determines the valid moves for the Elepant"""
         pass
-

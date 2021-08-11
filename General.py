@@ -1,5 +1,4 @@
-import Piece
-
+from Piece import Piece
 
 class General(Piece):
     """Creates General game piece"""
@@ -18,6 +17,6 @@ class General(Piece):
         return self._name
 
     def is_valid_move(self, board, curr, dest):
-        """determines the valid moves for the General"""
+        """determines the valid moves for the general"""
         pass
 

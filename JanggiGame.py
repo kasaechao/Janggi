@@ -15,6 +15,28 @@ class JanggiGame:
         self._in_check = None
         self._board = Board()
 
+        # Setup the board
+        red_pieces = self._red_player.get_pieces()
+        blue_pieces = self._blue_player.get_pieces()
+        for piece in red_pieces:
+            coord = self.convert_coord(red_pieces[piece]['initial_location'])
+            self._board.set_board(coord, red_pieces[piece]['name'])
+        for piece in blue_pieces:
+            coord = self.convert_coord(blue_pieces[piece]['initial_location'])
+            self._board.set_board(coord, blue_pieces[piece]['name'])
+
+    # ***************** UTILITY FUNCTION TO CONVERT COORDINATE TO LIST INDICES ************************
+    @staticmethod
+    def convert_coord(coord: str) -> tuple:
+        """convert the requested move to valid board indices"""
+        key = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
+        col = int(coord[1:]) - 1
+        for index in range(len(key)):
+            if coord[0] == key[index]:
+                row = index
+                return col, row
+        return None, None
+
     # ***************** GET METHODS FOR THE PRIMARY DATA MEMBERS IN THE INIT FUNCTION *****************
     def get_game_state(self):
         """get current game state"""
@@ -40,8 +62,6 @@ class JanggiGame:
         """moves a valid piece on the board"""
         pass
 
-    def is_valid_move(self, board):
-        """determines if the requested move is a valid move"""
-        pass
 
-
+game = JanggiGame()
+game.get_board().print_board()
