@@ -14,6 +14,7 @@ class JanggiGame:
         self._blue_player = Player('blue')
         self._in_check = None
         self._board = Board()
+        self._turn = 'blue'
 
         # Setup the board
         red_pieces = self._red_player.get_pieces()
@@ -30,10 +31,10 @@ class JanggiGame:
     def convert_coord(coord: str) -> tuple:
         """convert the requested move to valid board indices"""
         key = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
-        col = int(coord[1:]) - 1
+        row = int(coord[1:]) - 1
         for index in range(len(key)):
             if coord[0] == key[index]:
-                row = index
+                col = index
                 return col, row
         return None, None
 
@@ -58,10 +59,39 @@ class JanggiGame:
         """get player private data member"""
         return self._blue_player
 
+    def toggle_turn(self):
+        if self._turn == 'red':
+            self._turn = 'blue'
+        else:
+            self._turn = 'red'
+
     def make_move(self, curr, dest):
-        """moves a valid piece on the board"""
-        pass
+        """makes a valid move"""
+        board = self._board
+        curr = self.convert_coord(curr)
+        dest = self.convert_coord(dest)
+        piece = board.get_board()[curr[0]][curr[1]]
+
+        # no piece exists to move
+        if piece == '':
+            return False
+        if piece.get_color() != self._turn:
+            return False
+        # if move is invalid
+        if not piece.is_valid_move(board, curr, dest):
+            return False
+        board.set_board(curr, '')
+        if board.get_board()[dest[0]][dest[1]] != '':
+            piece = board.get_board()[dest[0]][dest[1]]
+            piece.set_state()
+        board.set_board(dest, piece)
+        self.toggle_turn()
+        return True
 
 
-game = JanggiGame()
-game.get_board().print_board()
+# game = JanggiGame()
+# game.get_board().print_board()
+# move = game.make_move('a7', 'b6')
+# print(move)
+# game.get_board().print_board()
+#

@@ -42,8 +42,7 @@ class Piece:
         self._color = color
         return self._color
 
-    def set_state(self, state):
-        """get method for private data member"""
-        self._state = state
-        return self._state
+    def set_state(self):
+        """set piece to dead state"""
+        return not self._state
 

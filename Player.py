@@ -26,10 +26,10 @@ class Player:
                 "Cannon1": {"name": Cannon(color), "color": color, "current_location": '', "initial_location": 'b3'},
                 "Cannon2": {"name": Cannon(color), "color": color, "current_location": '', "initial_location": 'h3'},
                 "Soldier1": {"name": Soldier(color), "color": color, "current_location": '', "initial_location": 'a4'},
-                "Soldier2":{"name": Soldier(color), "color": color, "current_location": '', "initial_location": 'c4'},
-                "Soldier3":{"name": Soldier(color), "color": color, "current_location": '', "initial_location": 'e4'},
-                "Soldier4":{"name": Soldier(color), "color": color, "current_location": '', "initial_location": 'g4'},
-                "Soldier5":{"name": Soldier(color), "color": color, "current_location": '', "initial_location": 'i4'}
+                "Soldier2": {"name": Soldier(color), "color": color, "current_location": '', "initial_location": 'c4'},
+                "Soldier3": {"name": Soldier(color), "color": color, "current_location": '', "initial_location": 'e4'},
+                "Soldier4": {"name": Soldier(color), "color": color, "current_location": '', "initial_location": 'g4'},
+                "Soldier5": {"name": Soldier(color), "color": color, "current_location": '', "initial_location": 'i4'}
             }
         else:
             self._pieces = {
@@ -60,8 +60,3 @@ class Player:
         return self._pieces
 
 
-# testing instances created
-player = Player('red')
-player2 = Player('blue')
-print(player.get_pieces()['General']['name'])
-print(player2.get_pieces())
