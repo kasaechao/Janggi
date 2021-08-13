@@ -70,7 +70,7 @@ class JanggiGame:
         board = self._board
         curr = self.convert_coord(curr)
         dest = self.convert_coord(dest)
-        piece = board.get_board()[curr[0]][curr[1]]
+        piece = board.get_board()[curr[1]][curr[0]]
 
         # no piece exists to move
         if piece == '':
@@ -81,17 +81,17 @@ class JanggiGame:
         if not piece.is_valid_move(board, curr, dest):
             return False
         board.set_board(curr, '')
-        if board.get_board()[dest[0]][dest[1]] != '':
-            piece = board.get_board()[dest[0]][dest[1]]
+        if board.get_board()[dest[1]][dest[0]] != '':
+            piece = board.get_board()[dest[1]][dest[0]]
             piece.set_state()
         board.set_board(dest, piece)
         self.toggle_turn()
         return True
 
 
-# game = JanggiGame()
-# game.get_board().print_board()
-# move = game.make_move('a7', 'b6')
-# print(move)
-# game.get_board().print_board()
-#
+game = JanggiGame()
+game.get_board().print_board()
+move = game.make_move('h10', 'i9')
+print(move)
+game.get_board().print_board()
+

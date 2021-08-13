@@ -36,7 +36,7 @@ class Soldier(Piece):
             return False
         elif (abs(x2 - x2) > 0 and abs(y2 - y1) > 0) and is_palace_move:
             # if blocked trying to move diagonally
-            if board.get_board()[x2][y2] != '':
+            if board.get_board()[y2][x2] != '':
                 return False
 
         if self._color == 'red':
@@ -45,7 +45,7 @@ class Soldier(Piece):
             if (y2 - y1) < 0:
                 return False
             # if blocked by own piece
-            if board.get_board()[x2][y2] != '' and board.get_board()[x2][y2].get_color() == 'red':
+            if board.get_board()[y2][x2] != '' and board.get_board()[y2][x2].get_color() == 'red':
                 return False
 
         elif self._color == 'blue':
@@ -54,7 +54,7 @@ class Soldier(Piece):
             if (y2 - y1) > 0:
                 return False
             # if blocked by own piece
-            if board.get_board()[x2][y2] != '' and board.get_board()[x2][y2].get_color() == 'blue':
+            if board.get_board()[y2][x2] != '' and board.get_board()[y2][x2].get_color() == 'blue':
                 return False
 
         # can move diagonally forward if in the palace

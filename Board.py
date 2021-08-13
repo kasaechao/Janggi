@@ -8,7 +8,7 @@ class Board:
         """print the board and its pieces for testing and playing"""
         print("  ", ' a ', ' b ', ' c ', ' d ', ' e ', ' f ', ' g ', ' h ', ' i ')
         [print(row + 1, "", self._board[row]) for row in range(len(self._board) - 1)]
-        [print(row + 1, self._board[row]) for row in range(len(self._board) - 1,len(self._board))]
+        [print(row + 1, self._board[row]) for row in range(len(self._board) - 1, len(self._board))]
 
     def get_board(self):
         """get method for self._board"""
