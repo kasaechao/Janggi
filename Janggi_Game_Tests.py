@@ -215,7 +215,9 @@ class TestJanggiGame(unittest.TestCase):
         """CHARIOT: test in the beginning of the game that a red chariot can perform a valid forward move"""
         #take a soldier for red
         g = JanggiGame()
+        g.get_board().print_board()
         first_move = g.make_move('c7','c6') #because blue moves first
+        g.get_board().print_board()
         red_chariot_forward_move = g.make_move('a1','a3')
         self.assertIs(red_chariot_forward_move, True)
 
