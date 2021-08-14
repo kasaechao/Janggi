@@ -489,7 +489,7 @@ class TestJanggiGame(unittest.TestCase):
         g.make_move('e5','e6') #red soldier captures blue
 
         try:
-            capturing_move = g.make_move('d8','e6')
+            capturing_move = g.make_move('d8', 'e6')
             self.assertIs(capturing_move, True)
         except:
             self.fail("Blue Horse from West should be able to capture a Red soldier")
@@ -515,6 +515,7 @@ class TestJanggiGame(unittest.TestCase):
 
         try:
             valid_capture_move = g.make_move('i3','h5')
+            g.get_board().print_board()
             self.assertIs(valid_capture_move, True)
         except:
             self.fail("Red Horse from East should be able to capture a Blue Soldier")
@@ -541,6 +542,7 @@ class TestJanggiGame(unittest.TestCase):
         g.make_move('g7', 'g7')  # blue passing move
 
         try:
+            g.get_board().print_board()
             invalid_capturing_move = g.make_move('c1', 'b3')  # red horse tries to get at the same place as Cannon
             self.assertIs(invalid_capturing_move, False)
         except:
@@ -599,6 +601,7 @@ class TestJanggiGame(unittest.TestCase):
             self.fail("Blue Guard from west should be able to make a valid move")
 
         try:
+            g.get_board().print_board()
             valid_move = g.make_move('d2','d3') #red guard moves
             self.assertIs(valid_move, True)
         except:
@@ -647,6 +650,7 @@ class TestJanggiGame(unittest.TestCase):
         g.make_move('f2','f3') #red moves
 
         try:
+            g.get_board().print_board()
             invalid_move = g.make_move('d8','c8') #blue guard tries to move outside the palace
             self.assertIs(invalid_move, False)
         except:
@@ -676,6 +680,7 @@ class TestJanggiGame(unittest.TestCase):
         except:
             self.fail("Red Guard should not be able to move outside the palace")
 
+    """ELEPHANT"""
 #    @visibility('visible')
     def test_valid_move_for_elephant(self):
         """ELEPHANT: test elephants can make valid moves"""

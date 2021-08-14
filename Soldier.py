@@ -11,7 +11,7 @@ class Soldier(Piece):
 
     def __repr__(self):
         """override object display on the game board for testing purposes"""
-        return self._name[0:2]
+        return self.get_color()[0] + "." + self._name[0:2]
 
     def get_name(self):
         """getter for self._name"""
@@ -45,7 +45,7 @@ class Soldier(Piece):
             if (y2 - y1) < 0:
                 return False
             # if blocked by own piece
-            if board.get_board()[y2][x2] != '' and board.get_board()[y2][x2].get_color() == 'red':
+            if board.get_board()[y2][x2] != '__' and board.get_board()[y2][x2].get_color() == 'red':
                 return False
 
         elif self._color == 'blue':
@@ -54,7 +54,7 @@ class Soldier(Piece):
             if (y2 - y1) > 0:
                 return False
             # if blocked by own piece
-            if board.get_board()[y2][x2] != '' and board.get_board()[y2][x2].get_color() == 'blue':
+            if board.get_board()[y2][x2] != '__' and board.get_board()[y2][x2].get_color() == 'blue':
                 return False
 
         # can move diagonally forward if in the palace

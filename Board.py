@@ -2,11 +2,11 @@ class Board:
     """Creates a new playing board with initial pieces and their locations"""
 
     def __init__(self):
-        self._board = [["" for col in range(9)] for row in range(10)]
+        self._board = [["__" for col in range(9)] for row in range(10)]
 
     def print_board(self):
         """print the board and its pieces for testing and playing"""
-        print("  ", ' a ', ' b ', ' c ', ' d ', ' e ', ' f ', ' g ', ' h ', ' i ')
+        print("  ", '  a ', '   b ', '   c ', '   d ', '   e ', '   f ', '   g ', '   h ', '   i ')
         [print(row + 1, "", self._board[row]) for row in range(len(self._board) - 1)]
         [print(row + 1, self._board[row]) for row in range(len(self._board) - 1, len(self._board))]
 
@@ -25,8 +25,8 @@ class Board:
         """check if current location is int he palace"""
 
         red_palace_locations = [(3, 0), (4, 0), (5, 0),
-                                (3, 0), (4, 0), (5, 0),
-                                (3, 0), (4, 0), (5, 0)]
+                                (3, 1), (4, 1), (5, 1),
+                                (3, 2), (4, 2), (5, 2)]
         blue_palace_locations = [(3, 7), (4, 7), (5, 7),
                                  (3, 8), (4, 8), (5, 8),
                                  (3, 9), (4, 9), (5, 9)]

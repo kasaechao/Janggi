@@ -72,26 +72,37 @@ class JanggiGame:
         dest = self.convert_coord(dest)
         piece = board.get_board()[curr[1]][curr[0]]
 
+        # check if player passes
+        if curr == dest:
+            self.toggle_turn()
+            return True
+
         # no piece exists to move
-        if piece == '':
+        if piece == '__':
             return False
         if piece.get_color() != self._turn:
             return False
         # if move is invalid
         if not piece.is_valid_move(board, curr, dest):
             return False
-        board.set_board(curr, '')
-        if board.get_board()[dest[1]][dest[0]] != '':
-            piece = board.get_board()[dest[1]][dest[0]]
-            piece.set_state()
+        board.set_board(curr, '__')
+        captured_piece = board.get_board()[dest[1]][dest[0]]
+        if captured_piece != '__':
+            captured_piece.set_state()
         board.set_board(dest, piece)
+
         self.toggle_turn()
         return True
 
 
-game = JanggiGame()
-game.get_board().print_board()
-move = game.make_move('h10', 'i9')
-print(move)
-game.get_board().print_board()
+def main():
+    game = JanggiGame()
+    game.get_board().print_board()
+    move = game.make_move('h10', 'i9')
+    print(move)
+    game.get_board().print_board()
+
+
+if __name__ == '__main__':
+    main()
 

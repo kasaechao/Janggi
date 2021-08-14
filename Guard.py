@@ -10,7 +10,7 @@ class Guard(Piece):
 
     def __repr__(self):
         """override object display on the game board for testing purposes"""
-        return self._name[0:2]
+        return self.get_color()[0] + "." + self._name[0:2]
 
     def get_name(self):
         """getter for self._name"""
@@ -22,7 +22,7 @@ class Guard(Piece):
         x2, y2 = dest[0], dest[1]
 
         # attempt to move out of palace
-        if not board.is_in_palace(curr) and not board.is_in_palace(dest):
+        if not board.is_in_palace(curr) or not board.is_in_palace(dest):
             return False
 
         # attempt to move more than 1 unit
@@ -31,10 +31,10 @@ class Guard(Piece):
 
         # attempt to move to an occupied square by friendly unit
         if self.get_color() == 'red':
-            if board.get_board()[x2][y2] != '' and board.get_board()[x2][y2].get_color() == 'red':
+            if board.get_board()[y2][x2] != '__' and board.get_board()[x2][y2].get_color() == 'red':
                 return False
         elif self.get_color() == 'blue':
-            if board.get_board()[x2][y2] != '' and board.get_board()[x2][y2].get_color() == 'blue':
+            if board.get_board()[y2][x2] != '__' and board.get_board()[x2][y2].get_color() == 'blue':
                 return False
         return True
 
