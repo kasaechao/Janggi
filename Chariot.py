@@ -35,7 +35,7 @@ class Chariot(Piece):
 
         # attempt to move horizontally but blocked by a unit
         if abs(x2 - x1) > 0 and abs(y2 - y1) == 0:
-            i = 0
+            i = 1
             is_blocked = False
             if x2 - x1 > 0:  # move right
 
@@ -56,7 +56,7 @@ class Chariot(Piece):
 
         # attempt to vertically but blocked by a unit
         elif abs(x2 - x1) == 0 and abs(y2 - y1) > 0:
-            i = 0
+            i = 1
             is_blocked = False
 
             if y2 - y1 > 0:  # move down

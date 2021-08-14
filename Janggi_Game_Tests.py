@@ -342,7 +342,8 @@ class TestJanggiGame(unittest.TestCase):
         g.make_move('g5','g5') #red passes
         
         g.make_move('h5','a5')  #blue cannon jumps west
-        g.make_move('g5','g5') #red passes      
+        g.make_move('g5','g5') #red passes
+        g.get_board().print_board()
         valid_cannon_move_south = g.make_move('a5','a9') #blue cannon moves south
         self.assertIs(valid_cannon_move_south, True)
         #now try moving that cannon again back to make sure it was actually placed there
@@ -361,6 +362,7 @@ class TestJanggiGame(unittest.TestCase):
     def test_invalid_forward_move_for_blue_cannon_without_a_screen(self):
         """CANNON: test blue cannon cannot perform an invalid forward move without a screen"""
         g = JanggiGame()
+        g.get_board().print_board()
         cannon_invalid_move = g.make_move('b8', 'b7')  # blue cannon move forward without a screen
         self.assertIs(cannon_invalid_move, False)
 
