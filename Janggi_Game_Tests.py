@@ -277,7 +277,9 @@ class TestJanggiGame(unittest.TestCase):
 
         g.make_move('a10', 'a8')  # because blue moves first
         g.make_move('a1', 'a3')  # move the red chariot ahead
+        g.get_board().print_board()
         invalid_chariot_diagonal_move = g.make_move('a8','b7') #blue chariot moves east
+        g.get_board().print_board()
         self.assertIs(invalid_chariot_diagonal_move, False)
         pass
 

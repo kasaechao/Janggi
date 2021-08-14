@@ -26,7 +26,7 @@ class Chariot(Piece):
         x2, y2 = dest[0], dest[1]
 
         # attempt to move diagonally while outside the palace
-        if not board.is_in_palace(curr) and (x2 - x1) > 0 and (y2 - y1) > 0:
+        if not board.is_in_palace(curr) and abs(x2 - x1) > 0 and abs(y2 - y1) > 0:
             return False
 
         # attempt to move diagonally from palace to outside of palace
