@@ -26,7 +26,7 @@ class General(Piece):
         x2, y2 = dest[0], dest[1]
 
         # attempt to move out of palace
-        if not board.is_in_palace(curr) and not board.is_in_palace(dest):
+        if not board.is_in_palace(curr) or not board.is_in_palace(dest):
             return False
 
         # attempt to move more than 1 unit

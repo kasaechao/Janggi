@@ -62,6 +62,7 @@ class Cannon(Piece):
                 if unit_count < 1 or unit_count > 2:
                     is_blocked = True
             else:  # move left
+                i = -1
                 while not is_blocked and (x1 + i) > x2:
                     if board.get_board()[y2][x1 + i] != '__':
                         if board.get_board()[y2][x1 + i].get_name() == 'Cannon':

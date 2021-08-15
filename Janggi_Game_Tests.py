@@ -340,7 +340,8 @@ class TestJanggiGame(unittest.TestCase):
 
         g.make_move('h8','h5') #blue cannon moves front
         g.make_move('g5','g5') #red passes
-        
+
+        g.get_board().print_board()
         g.make_move('h5','a5')  #blue cannon jumps west
         g.make_move('g5','g5') #red passes
         g.get_board().print_board()
@@ -787,6 +788,7 @@ class TestJanggiGame(unittest.TestCase):
         valid_move = g.make_move('e2', 'f3') # red
 
         #moving outside the palace
+        g.get_board().print_board()
         invalid_move = g.make_move('f8','g8') #blue
         self.assertIs(invalid_move, False)
 
