@@ -22,9 +22,12 @@ class JanggiGame:
         for piece in red_pieces:
             coord = self.convert_coord(red_pieces[piece]['initial_location'])
             self._board.set_board(coord, red_pieces[piece]['name'])
+            red_pieces[piece]['name'].set_current_location(coord)
         for piece in blue_pieces:
             coord = self.convert_coord(blue_pieces[piece]['initial_location'])
             self._board.set_board(coord, blue_pieces[piece]['name'])
+            blue_pieces[piece]['name'].set_current_location(coord)
+
 
     # ***************** UTILITY FUNCTION TO CONVERT COORDINATE TO LIST INDICES ************************
     @staticmethod
@@ -42,10 +45,6 @@ class JanggiGame:
     def get_game_state(self):
         """get current game state"""
         return self._game_state
-
-    def is_in_check(self):
-        """get player in check"""
-        return self._in_check
 
     def get_board(self):
         """get the current board"""
@@ -65,6 +64,17 @@ class JanggiGame:
         else:
             self._turn = 'red'
 
+    def is_in_check(self, player):
+        """get player in check"""
+        board = self._board.get_board()
+        if player == 'red':     # get the color general we need, and opposing player pieces
+            general = self._red_player.get_pieces()
+            gen_coord = None
+        elif player == 'blue':
+            general = self._blue_player.get_pieces()['General']['name']
+            gen_coord = general.get_current_location()
+        pass
+
     def make_move(self, curr, dest):
         """makes a valid move"""
         board = self._board
@@ -72,6 +82,10 @@ class JanggiGame:
         dest = self.convert_coord(dest)
         piece = board.get_board()[curr[1]][curr[0]]
 
+        # check turn
+        # check game state
+        # check is in check for current player
+        self.is_in_check(self._turn)
         # check if player passes
         if curr == dest:
             self.toggle_turn()
@@ -91,6 +105,8 @@ class JanggiGame:
             captured_piece.set_state()
         board.set_board(dest, piece)
 
+        # check game state
+        # toggle turn
         self.toggle_turn()
         return True
 
@@ -105,4 +121,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
