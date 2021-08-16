@@ -1,6 +1,6 @@
 # Janggi - Korean Strategic Board Game
 
-Janggi is strategy board game popular in Korea. It is similar to chess in that goal is to put the opposing player's general in checkmate. Each player starts with 16 pieces placed in a specific starting location on a 9/10 board. The pieces are placed on the intersections rather than inside the squares as it is played in chess. 
+Janggi is strategy board game popular in Korea. It is similar to chess in that goal is to put the opposing player's general in checkmate. Each player starts with 16 pieces placed in a specific starting location on a 9x10 board. The pieces are placed on the intersections rather than inside the squares as it is played in chess. 
 
 
 ## How to Run
@@ -9,7 +9,7 @@ in the instance of the JanggiGame class. All components are contained in their r
 The game is played from the command line. 
 
 ## Starting Pieces
- - General x 2
+ - General x 1
  - Elephant x 2
  - Chariot x 2
  - Horse x 2
@@ -41,3 +41,6 @@ Note: We will quantify a unit a movement to be from one intersection to the next
    
 - Cannon
    - The cannon moves similar to that of the Chariot with the exception that there must be exactly one piece for the Cannon to 'jump' over to its destination.
+   
+## Sources
+[wiki](https://en.wikipedia.org/wiki/Janggi)
