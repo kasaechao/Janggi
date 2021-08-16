@@ -1170,13 +1170,14 @@ class TestJanggiGame(unittest.TestCase):
         except:
             self.fail("General is not in check and yet is_in_check returns True for Blue")
 
-        g.make_move('e5','c4') #red horse captures blue cannon
-        g.make_move('i10','i8') #blue chariot moves
-        g.make_move('g4','f4')
-        g.make_move('i8','f8') #blue chariot moves sideway
-        g.make_move('g3','h5')
-        g.make_move('h10','g8') #blue horse
-        g.make_move('e6','e3') #red CHECKS blue using a cannon -- special test for checks using a cannon -- check here
+        g.make_move('e5', 'c4') #red horse captures blue cannon
+        g.make_move('i10', 'i8') #blue chariot moves
+        g.make_move('g4', 'f4')
+        g.make_move('i8', 'f8') #blue chariot moves sideway
+        g.make_move('g3', 'h5')
+        g.make_move('h10', 'g8') #blue horse
+        g.make_move('e6', 'e3') #red CHECKS blue using a cannon -- special test for checks using a cannon -- check here
+        g.get_board().print_board()
         
         try:
             self.assertEqual(g.get_game_state().upper(),'UNFINISHED')
@@ -1190,6 +1191,7 @@ class TestJanggiGame(unittest.TestCase):
 
         try:
             self.assertIs(g.is_in_check('blue'), True)
+
         except:
             self.fail("Blue General is in check and is_in_check should return True for blue")
 

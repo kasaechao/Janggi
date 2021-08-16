@@ -32,13 +32,26 @@ class Board:
         return False
 
     @staticmethod
+    def blue_palace() -> list:
+        blue_palace_locations = [(3, 7), (4, 7), (5, 7),
+                                 (3, 8), (4, 8), (5, 8),
+                                 (3, 9), (4, 9), (5, 9)]
+        return blue_palace_locations
+
+    @ staticmethod
+    def red_palace() -> list:
+        red_palace_locations = [(3, 0), (4, 0), (5, 0),
+                                (3, 1), (4, 1), (5, 1),
+                                (3, 2), (4, 2), (5, 2)]
+        return red_palace_locations
+
+    @staticmethod
     def is_in_blue_palace(coord) -> bool:
         """boundaries of the blue palace"""
 
         blue_palace_locations = [(3, 7), (4, 7), (5, 7),
                                  (3, 8), (4, 8), (5, 8),
                                  (3, 9), (4, 9), (5, 9)]
-
         if coord in blue_palace_locations:
             return True
 

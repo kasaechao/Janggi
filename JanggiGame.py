@@ -66,7 +66,6 @@ class JanggiGame:
 
     def is_in_check(self, player):
         """get player in check"""
-        board = self._board.get_board()
         if player == 'red':     # get the color general we need, and opposing player pieces
             gen = self._red_player.get_pieces()['General']['name']
             gen_coord = gen.get_current_location()
@@ -87,8 +86,32 @@ class JanggiGame:
                     if piece.is_valid_move(self._board, piece_loc, gen_coord):
                         self._in_check = 'blue'
                         return True
-
         return False
+
+    def is_checkmate(self) -> bool:
+        """return checkmate event"""
+        # check if gen can escape check
+        if self._in_check == 'red':
+            red_gen = self._red_player.get_pieces()['General']['name']
+            red_gen_coord = self._red_player.get_pieces()['General']['name'].get_current_location()
+            for coord in self._board.red_palace():
+                if red_gen.is_valid_move(red_gen_coord, coord):
+                    for piece in self._blue_player.get_pieces():
+                        piece_coord = self._blue_player.get_pieces()[piece]['name'].get_current_location()
+                        if not self._blue_player.get_pieces()[piece]['name'].is_valid_move(piece_coord, coord):
+                            return False
+
+        elif self._in_check == 'blue':
+            blue_gen = self._blue_player.get_pieces()['General']['name']
+            blue_gen_coord = self._blue_player.get_pieces()['General']['name'].get_current_location()
+            for coord in self._board.blue_palace():
+                if blue_gen.is_valid_move(blue_gen_coord, coord):
+                    for piece in self._red_player.get_pieces():
+                        piece_coord = self._red_player.get_pieces()[piece]['name'].get_current_location()
+                        if not self._red_player.get_pieces()[piece]['name'].is_valid_move(piece_coord, coord):
+                            return False
+
+        return True
 
     def make_move(self, curr, dest):
         """makes a valid move"""
@@ -96,6 +119,10 @@ class JanggiGame:
         curr = self.convert_coord(curr)
         dest = self.convert_coord(dest)
         piece = board.get_board()[curr[1]][curr[0]]
+
+        # check for checkmate
+        if self.is_checkmate():
+            return False
 
         # check game state
         if self.get_game_state() != 'UNFINISHED':
@@ -124,7 +151,6 @@ class JanggiGame:
             captured_piece.set_state()
         board.set_board(dest, piece)
         piece.set_current_location(dest)
-
 
         # check if player is in check, then the move was invalid, and undo the moves
         if self.is_in_check(self._turn):
