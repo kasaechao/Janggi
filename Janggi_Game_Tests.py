@@ -919,6 +919,7 @@ class TestJanggiGame(unittest.TestCase):
         g.make_move('g3','h5')
         g.make_move('h10','g8') #blue horse
         self.assertTrue(g.make_move('e6','e3')) #red CHECKS blue using a cannon -- special test for checks using a cannon -- check here
+
         
         try:
             self.assertEqual(g.get_game_state().upper(),'UNFINISHED')
@@ -931,16 +932,19 @@ class TestJanggiGame(unittest.TestCase):
             self.fail("Red General is not in check and yet is_in_check returns True for red")
 
         try:
+
             self.assertIs(g.is_in_check('blue'), True)
         except:
             self.fail("Blue General is in check and is_in_check should return True for blue")
- 
+
+
         g.make_move('e9','d9') #general moves to avoid check -- check here
         
         try:
             self.assertIs(g.is_in_check('red'), False)
         except:
             self.fail("General is not in check and yet is_in_check returns True for red")
+
 
         try:
             self.assertIs(g.is_in_check('blue'), False)
@@ -1054,6 +1058,7 @@ class TestJanggiGame(unittest.TestCase):
             self.fail("Game state should be UNFINISHED when a general is in check but not checkmated")
 
         g.make_move('e2','e1') #red general moves to avoid capture -- check after this
+        g.get_board().print_board()
 
         try:
             self.assertIs(g.is_in_check('red'), False)

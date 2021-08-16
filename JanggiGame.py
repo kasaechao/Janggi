@@ -68,12 +68,25 @@ class JanggiGame:
         """get player in check"""
         board = self._board.get_board()
         if player == 'red':     # get the color general we need, and opposing player pieces
-            general = self._red_player.get_pieces()
-            gen_coord = None
+            gen = self._red_player.get_pieces()['General']['name']
+            gen_coord = gen.get_current_location()
+            for i in self._blue_player.get_pieces():
+                piece = self._blue_player.get_pieces()[i]['name']
+                piece_loc = piece.get_current_location()
+                if piece.is_valid_move(self._board, piece_loc, gen_coord):
+                    self._in_check = 'red'
+                    return True
         elif player == 'blue':
-            general = self._blue_player.get_pieces()['General']['name']
-            gen_coord = general.get_current_location()
-        pass
+            gen = self._blue_player.get_pieces()['General']['name']
+            gen_coord = gen.get_current_location()
+            for i in self._red_player.get_pieces():
+                piece = self._red_player.get_pieces()[i]['name']
+                piece_loc = piece.get_current_location()
+                if piece.is_valid_move(self._board, piece_loc, gen_coord):
+                    self._in_check = 'blue'
+                    return True
+
+        return False
 
     def make_move(self, curr, dest):
         """makes a valid move"""
@@ -82,31 +95,49 @@ class JanggiGame:
         dest = self.convert_coord(dest)
         piece = board.get_board()[curr[1]][curr[0]]
 
-        # check turn
         # check game state
-        # check is in check for current player
-        self.is_in_check(self._turn)
-        # check if player passes
-        if curr == dest:
+        if self.get_game_state() != 'UNFINISHED':
+            print('game over')
+            return False
+
+        # check if player passes, and not in check
+        if curr == dest and not self.is_in_check(self._turn):
             self.toggle_turn()
             return True
 
         # no piece exists to move
         if piece == '__':
+            print('no piece to move')
             return False
         if piece.get_color() != self._turn:
             return False
         # if move is invalid
         if not piece.is_valid_move(board, curr, dest):
+            print('invalid move')
             return False
+        # complete the move
         board.set_board(curr, '__')
         captured_piece = board.get_board()[dest[1]][dest[0]]
         if captured_piece != '__':
             captured_piece.set_state()
         board.set_board(dest, piece)
+        piece.set_current_location(dest)
 
-        # check game state
-        # toggle turn
+
+        # check if player is in check, then the move was invalid, and undo the moves
+        if self.is_in_check(self._turn):
+            if captured_piece != '__':
+                captured_piece.set_state()
+            board.set_board(dest, captured_piece)
+            board.set_board(curr, piece)
+            piece.set_current_location(curr)
+            print('move does not remove check')
+            return False
+
+        # toggle turn if move is valid
+        if self._turn == self._in_check:
+            self._in_check == None
+
         self.toggle_turn()
         return True
 

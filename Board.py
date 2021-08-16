@@ -21,6 +21,31 @@ class Board:
         self._board[row][col] = piece
 
     @staticmethod
+    def is_in_red_palace(coord) -> bool:
+        """boundaries of the red palace"""
+        red_palace_locations = [(3, 0), (4, 0), (5, 0),
+                                (3, 1), (4, 1), (5, 1),
+                                (3, 2), (4, 2), (5, 2)]
+        if coord in red_palace_locations:
+            return True
+
+        return False
+
+    @staticmethod
+    def is_in_blue_palace(coord) -> bool:
+        """boundaries of the blue palace"""
+
+        blue_palace_locations = [(3, 7), (4, 7), (5, 7),
+                                 (3, 8), (4, 8), (5, 8),
+                                 (3, 9), (4, 9), (5, 9)]
+
+        if coord in blue_palace_locations:
+            return True
+
+        return False
+
+
+    @staticmethod
     def is_in_palace(coord) -> bool:
         """check if current location is int he palace"""
 

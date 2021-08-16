@@ -31,10 +31,10 @@ class Guard(Piece):
 
         # attempt to move to an occupied square by friendly unit
         if self.get_color() == 'red':
-            if board.get_board()[y2][x2] != '__' and board.get_board()[x2][y2].get_color() == 'red':
+            if board.get_board()[y2][x2] != '__' and board.get_board()[y2][x2].get_color() == 'red':
                 return False
         elif self.get_color() == 'blue':
-            if board.get_board()[y2][x2] != '__' and board.get_board()[x2][y2].get_color() == 'blue':
+            if board.get_board()[y2][x2] != '__' and board.get_board()[y2][x2].get_color() == 'blue':
                 return False
         return True
 
