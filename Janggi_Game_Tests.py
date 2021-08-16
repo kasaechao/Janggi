@@ -1026,11 +1026,14 @@ class TestJanggiGame(unittest.TestCase):
         except:
             self.fail("Blue General is in check and is_in_check should return True for blue")
 
-        g.make_move('e9','d9') #blue moves 
-        g.make_move('c4','e5') #red
-        g.make_move('c6','d6')
-        g.make_move('e5','c4')
-        g.make_move('a7','a6')#blue
+        g.make_move('e9','d9') #blue moves gen
+
+        g.make_move('c4','e5') #red horse moves
+
+        g.make_move('c6','d6') # blue move soldier
+
+        g.make_move('e5','c4') # red move horse
+        g.make_move('a7','a6')#blue move soldier
         g.make_move('h3', 'h9') #red cannon moves to a position where it COULD Check but has not. -- check here
         g.make_move('a10','a7')
         g.make_move('c4','d6') #red horse captures blue soldier
@@ -1040,6 +1043,7 @@ class TestJanggiGame(unittest.TestCase):
         g.make_move('a1','b1') #red chariot captures blue cannon
         g.make_move('a7','a4')
         g.make_move('b1','c1')
+        g.get_board().print_board()
         g.make_move('a4','a2') #blue CHECKS red using a chariot -- check here
         
         try:
@@ -1057,8 +1061,9 @@ class TestJanggiGame(unittest.TestCase):
         except:
             self.fail("Game state should be UNFINISHED when a general is in check but not checkmated")
 
-        g.make_move('e2','e1') #red general moves to avoid capture -- check after this
         g.get_board().print_board()
+        g.make_move('e2','e1') #red general moves to avoid capture -- check after this
+
 
         try:
             self.assertIs(g.is_in_check('red'), False)

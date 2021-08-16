@@ -44,5 +44,5 @@ class Piece:
 
     def set_state(self):
         """set piece to dead state"""
-        return not self._state
+        self._state = not self._state
 

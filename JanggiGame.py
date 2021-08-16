@@ -73,18 +73,20 @@ class JanggiGame:
             for i in self._blue_player.get_pieces():
                 piece = self._blue_player.get_pieces()[i]['name']
                 piece_loc = piece.get_current_location()
-                if piece.is_valid_move(self._board, piece_loc, gen_coord):
-                    self._in_check = 'red'
-                    return True
+                if piece.get_state() is True:
+                    if piece.is_valid_move(self._board, piece_loc, gen_coord):
+                        self._in_check = 'red'
+                        return True
         elif player == 'blue':
             gen = self._blue_player.get_pieces()['General']['name']
             gen_coord = gen.get_current_location()
             for i in self._red_player.get_pieces():
                 piece = self._red_player.get_pieces()[i]['name']
                 piece_loc = piece.get_current_location()
-                if piece.is_valid_move(self._board, piece_loc, gen_coord):
-                    self._in_check = 'blue'
-                    return True
+                if piece.get_state() is True:
+                    if piece.is_valid_move(self._board, piece_loc, gen_coord):
+                        self._in_check = 'blue'
+                        return True
 
         return False
 
@@ -136,7 +138,7 @@ class JanggiGame:
 
         # toggle turn if move is valid
         if self._turn == self._in_check:
-            self._in_check == None
+            self._in_check = None
 
         self.toggle_turn()
         return True
