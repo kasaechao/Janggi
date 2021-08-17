@@ -46,6 +46,10 @@ class JanggiGame:
         """get current game state"""
         return self._game_state
 
+    def get_turn(self):
+        """get the current turn"""
+        return self._turn
+
     def get_board(self):
         """get the current board"""
         return self._board
@@ -99,7 +103,7 @@ class JanggiGame:
                     for piece in self._blue_player.get_pieces():
                         piece_coord = self._blue_player.get_pieces()[piece]['name'].get_current_location()
                         if not self._blue_player.get_pieces()[piece]['name'].is_valid_move(piece_coord, coord):
-                            return False
+                            return True
 
         elif self._in_check == 'blue':
             blue_gen = self._blue_player.get_pieces()['General']['name']
@@ -109,9 +113,9 @@ class JanggiGame:
                     for piece in self._red_player.get_pieces():
                         piece_coord = self._red_player.get_pieces()[piece]['name'].get_current_location()
                         if not self._red_player.get_pieces()[piece]['name'].is_valid_move(piece_coord, coord):
-                            return False
+                            return True
 
-        return True
+        return False
 
     def make_move(self, curr, dest):
         """makes a valid move"""
@@ -120,9 +124,9 @@ class JanggiGame:
         dest = self.convert_coord(dest)
         piece = board.get_board()[curr[1]][curr[0]]
 
-        # check for checkmate
-        if self.is_checkmate():
-            return False
+        # # check for checkmate
+        # if self.is_checkmate():
+        #     return False
 
         # check game state
         if self.get_game_state() != 'UNFINISHED':
@@ -171,11 +175,27 @@ class JanggiGame:
 
 
 def main():
-    game = JanggiGame()
-    game.get_board().print_board()
-    move = game.make_move('h10', 'i9')
-    print(move)
-    game.get_board().print_board()
+    g = JanggiGame()
+    while g.get_game_state() == 'UNFINISHED':
+        valid_move = False
+        if g.get_turn() == 'blue':
+            while not valid_move:
+                g.get_board().print_board()
+                print('blue''s turn to make a move.')
+                curr = input('from: ')
+                dest = input("destination: ")
+                valid_move = g.make_move(curr, dest)
+                if not valid_move:
+                    print('move invalid, please make a valid move...')
+        else:
+            while not valid_move:
+                g.get_board().print_board()
+                print('red''s turn to make a move.')
+                curr = input('from: ')
+                dest = input("destination: ")
+                valid_move = g.make_move(curr, dest)
+                if not valid_move:
+                    print('move invalid, please make a valid move...')
 
 
 if __name__ == '__main__':
