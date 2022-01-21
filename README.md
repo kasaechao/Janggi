@@ -2,6 +2,8 @@
 
 Janggi is strategy board game popular in Korea. It is similar to chess in that goal is to put the opposing player's general in checkmate. Each player starts with 16 pieces placed in a specific starting location on a 9x10 board. The pieces are placed on the intersections rather than inside the squares as it is played in chess. 
 
+<img src='janggi.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
 
 ## How to Run
 The program can be run from the JanggiGame.py file. The game is contained in the JanggiGame class. All necessary components of the game (board, players, pieces) are instantiated 
