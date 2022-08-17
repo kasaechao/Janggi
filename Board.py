@@ -3,12 +3,23 @@ class Board:
 
     def __init__(self):
         self._board = [["__" for col in range(9)] for row in range(10)]
+        self._image, self._rect = None, None
 
     def print_board(self):
         """print the board and its pieces for testing and playing"""
         print("  ", '  a ', '   b ', '   c ', '   d ', '   e ', '   f ', '   g ', '   h ', '   i ')
         [print(row + 1, "", self._board[row]) for row in range(len(self._board) - 1)]
         [print(row + 1, self._board[row]) for row in range(len(self._board) - 1, len(self._board))]
+
+    def get_image(self):
+        """geter for image file"""
+        return self._image, self._rect
+
+    def set_image(self, image):
+        """ set image data from pygame load utils"""
+        self._image, self._rect = image
+        return self._image, self._rect
+
 
     def get_board(self):
         """get method for self._board"""

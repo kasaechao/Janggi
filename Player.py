@@ -50,6 +50,9 @@ class Player:
                 "Soldier4": {"name": Soldier(color), "color": color, "current_location": '', "initial_location": 'g7'},
                 "Soldier5": {"name": Soldier(color), "color": color, "current_location": '', "initial_location": 'i7'}
         }
+        for piece in self._pieces:
+            location = self._pieces[piece]['initial_location']
+            self._pieces[piece]['name'].set_current_location(location)
 
     def get_color(self):
         """get method for self._color"""

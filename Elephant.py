@@ -7,7 +7,7 @@ class Elephant(Piece):
     def __init__(self, color):
         """general will inherit from Piece parent class"""
         super().__init__(color)
-        self._name = 'Elepant'
+        self._name = 'Elephant'
 
     def __repr__(self):
         """override object display on the game board for testing purposes"""

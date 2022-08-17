@@ -12,6 +12,7 @@ class General(Piece):
         """override object display on the game board for testing purposes"""
         return self.get_color()[0] + "." + self._name[0:2]
 
+
     def get_name(self):
         """getter for self._name"""
         return self._name

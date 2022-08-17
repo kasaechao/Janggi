@@ -23,10 +23,12 @@ class JanggiGame:
             coord = self.convert_coord(red_pieces[piece]['initial_location'])
             self._board.set_board(coord, red_pieces[piece]['name'])
             red_pieces[piece]['name'].set_current_location(coord)
+            red_pieces[piece]['name'].set_image_file('red' + '_' + red_pieces[piece]['name'].get_name().lower() + '.svg')
         for piece in blue_pieces:
             coord = self.convert_coord(blue_pieces[piece]['initial_location'])
             self._board.set_board(coord, blue_pieces[piece]['name'])
             blue_pieces[piece]['name'].set_current_location(coord)
+            blue_pieces[piece]['name'].set_image_file('blue' + '_' + blue_pieces[piece]['name'].get_name().lower()  + '.svg')
 
 
     # ***************** UTILITY FUNCTION TO CONVERT COORDINATE TO LIST INDICES ************************
@@ -80,6 +82,7 @@ class JanggiGame:
                     if piece.is_valid_move(self._board, piece_loc, gen_coord):
                         self._in_check = 'red'
                         return True
+
         elif player == 'blue':
             gen = self._blue_player.get_pieces()['General']['name']
             gen_coord = gen.get_current_location()
